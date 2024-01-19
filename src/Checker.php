@@ -11,8 +11,6 @@ class Checker
 
     public function getVatinstance(string $countryCode, string $vatNumber)
     {
-        $vat = $this->api->retreiveVatInstance($countryCode, $vatNumber);
-
-        return $vat->all();
+        return json_encode($this->api->retreiveVatInstance($countryCode, $vatNumber)->vatobject);
     }
 }
