@@ -1,6 +1,6 @@
 {
     "name": "burtds/laravel-vatnumber-checker",
-    "description": "A simple cash converter package for Laravel.",
+    "description": "A simple VAT Number checker package for Laravel.",
     "license": "MIT",
     "autoload": {
         "psr-4": {
