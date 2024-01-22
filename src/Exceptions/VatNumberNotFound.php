@@ -8,6 +8,6 @@ class VatNumberNotFound extends Exception
 {
     public static function make(string $vatNumber)
     {
-        return new static("Given VAT number `{$vatNumber}` not found");
+        return new static("Given VAT number `{$vatNumber}` not found / is invalid ");
     }
 }
