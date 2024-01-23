@@ -14,8 +14,9 @@ class Checker
      */
     public function getRawVatInstance(string $countryCode, string $vatNumber): string
     {
-        // Grab the VatObject returned by the API
-        $vatObject = json_encode($this->api->retreiveVatInstance($countryCode, $vatNumber)->vatobject);
+        $vatInstance = $this->api->retreiveVatInstance($countryCode, $vatNumber);
+
+        $vatObject = json_encode($vatInstance->vatobject);
 
         // Check validity of the Object
         $this->validator->isValidVatNumber($vatObject, $vatNumber);
