@@ -19,8 +19,8 @@ class VatEuropeApi
             'vatNumber' => $vatNumber,
         ]);
 
-        $x = $response->json();
+        $vatProperties = $response->json();
 
-        return new VatInstance($x);
+        return new VatInstance($vatProperties);
     }
 }
