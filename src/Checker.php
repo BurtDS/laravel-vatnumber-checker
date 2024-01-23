@@ -16,7 +16,7 @@ class Checker
     {
         $vatInstance = $this->api->retrieveVatInstance($countryCode, $vatNumber);
 
-        $vatObject = json_encode($vatInstance->vatobject);
+        $vatObject = json_encode($vatInstance->vatObject);
 
         // Check validity of the Object
         $this->validator->ensureValidVatNumber($vatObject, $vatNumber);
