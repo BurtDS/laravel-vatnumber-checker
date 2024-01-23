@@ -12,7 +12,7 @@ class Validator
     }
 
     /**
-     * Checking weither a Vat Checker API response is valid,
+     * Checking whether a Vat Checker API response is valid,
      * based on the $currencies array.
      */
     public function ensureValidVatNumber($vatInstance, string $vatNumber): void
