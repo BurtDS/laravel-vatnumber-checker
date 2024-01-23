@@ -10,9 +10,8 @@ class VatEuropeApi
     {
     }
 
-    public function retreiveVatInstance(string $countryCode, string $vatNumber): VatInstance
+    public function retrieveVatInstance(string $countryCode, string $vatNumber): VatInstance
     {
-        // $url = "{$this->api}/check-vat-number";
         $url = 'https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number';
 
         $response = Http::post($url, [
@@ -20,8 +19,8 @@ class VatEuropeApi
             'vatNumber' => $vatNumber,
         ]);
 
-        $x = $response->json();
+        $vatProperties = $response->json();
 
-        return new VatInstance($x);
+        return new VatInstance($vatProperties);
     }
 }

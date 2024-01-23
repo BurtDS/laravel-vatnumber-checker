@@ -12,6 +12,7 @@ Verification of validity, company name, and address of the company is only one a
 ### Installation
 
 You can install the package via composer:
+
 ```bash
 composer require burtds/laravel-vatnumber-checker
 ```
@@ -22,24 +23,39 @@ Afterwords, you're able to fetch your desired information.
 This packages uses an API provided by the European Commission called "[VIES](https://ec.europa.eu/taxation_customs/vies/#/vat-validation)".
 
 We'll need to import the Facade of this package on top of your file.
+
 ```php
 use Burtds\VatChecker\Facades\VatChecker
 ```
-Once that is done, you'll be able to use the providede functions.
+Once that is done, you'll be able to use the provide functions.
 For this example we're using the VAT Number of Vulpo BV.
+
 ```php
-VatChecker::getRawVatInstance('BE','0749617582'); // returns a raw response of the European Commission's API.
-VatChecker::isVatValid('BE','0749617582'); // returns the validity of a VAT Number.
-VatChecker::getCompanyName('BE','0749617582'); // returns the company name related to the VAT Number.
-VatChecker::getCompanyAddress('BE','0749617582'); // returns the company address related to the VAT Number.
+$validVatNumber = '0749617582' // Vulpo BV's VAT number
+
+// returns a raw response of the European Commission's API
+VatChecker::getRawVatInstance('BE', $validVatNumber); 
+
+// returns the validity of a VAT number
+VatChecker::isVatValid('BE', $validVatNumber); 
+
+// returns the company name related to the VAT number
+VatChecker::getCompanyName('BE', $validVatNumber); 
+
+// returns the company address related to the VAT number
+VatChecker::getCompanyAddress('BE', $validVatNumber); 
 ```
 
-### Test & Format
+## Testing & Code Formatting
+
 For testing you can run:
+
 ```bash
 composer test
 ```
-For formatting the code using pint you can run:
+
+For formatting the code using Laravel Pint you can run:
+
 ```bash
 composer format
 ```

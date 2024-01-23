@@ -21,8 +21,8 @@ class VatnumberCheckerServiceProvider extends PackageServiceProvider
 
             return new VatEuropeApi($api);
         });
-        $this->app->bind(Validator::class, function () {
 
+        $this->app->bind(Validator::class, function () {
             return new Validator();
         });
 

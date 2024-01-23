@@ -4,30 +4,29 @@ namespace Burtds\VatChecker;
 
 class Checker
 {
-    public function __construct(protected VatEuropeApi $api, protected Validator $validator)
-    {
-
-    }
+    public function __construct(
+        protected VatEuropeApi $api,
+        protected Validator $validator
+    ) {}
 
     /**
-     * Retreives a known VAT Object for a given CountryCode & VatNumber.
-     *
-     * @return json
+     * Retrieves a known VAT Object for a given CountryCode & VatNumber.
      */
-    public function getRawVatInstance(string $countryCode, string $vatNumber)
+    public function getRawVatInstance(string $countryCode, string $vatNumber): string
     {
-        // Grab the VatObject returned by the API
-        $vatObject = json_encode($this->api->retreiveVatInstance($countryCode, $vatNumber)->vatobject);
+        $vatInstance = $this->api->retrieveVatInstance($countryCode, $vatNumber);
+
+        $vatObject = json_encode($vatInstance->vatProperties);
 
         // Check validity of the Object
-        $this->validator->isValidVatNumber($vatObject, $vatNumber);
+        $this->validator->ensureValidVatNumber($vatObject, $vatNumber);
 
         // Return the VatObject
         return $vatObject;
     }
 
     /**
-     * Retreives the Company Name of a known VAT Object for a given CountryCode & VatNumber.
+     * Retrieves the Company Name of a known VAT Object for a given CountryCode & VatNumber.
      *
      * @return string
      */
@@ -41,7 +40,7 @@ class Checker
     }
 
     /**
-     * Retreives the Company address of a known VAT Object for a given CountryCode & VatNumber.
+     * Retrieves the Company address of a known VAT Object for a given CountryCode & VatNumber.
      *
      * @return string
      */
@@ -55,7 +54,7 @@ class Checker
     }
 
     /**
-     * Retreives the validity of a given CountryCode & VatNumber.
+     * Retrieves the validity of a given CountryCode & VatNumber.
      *
      * @return string
      */
