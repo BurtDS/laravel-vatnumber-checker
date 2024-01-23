@@ -6,11 +6,6 @@ use Burtds\VatChecker\Exceptions\VatNumberNotFound;
 
 class Validator
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * Checking whether a Vat Checker API response is valid,
      * based on the $currencies array.
