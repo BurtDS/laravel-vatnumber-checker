@@ -6,7 +6,6 @@ use Burtds\VatChecker\Exceptions\VatNumberNotFound;
 
 class Validator
 {
-
     public function __construct()
     {
 

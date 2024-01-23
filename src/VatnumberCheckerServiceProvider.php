@@ -17,7 +17,7 @@ class VatnumberCheckerServiceProvider extends PackageServiceProvider
     public function packageBooted()
     {
         $this->app->bind(VatEuropeApi::class, function () {
-            $api = "https://ec.europa.eu/taxation_customs/vies/rest-api";
+            $api = 'https://ec.europa.eu/taxation_customs/vies/rest-api';
 
             return new VatEuropeApi($api);
         });
