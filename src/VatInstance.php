@@ -9,7 +9,7 @@ class VatInstance
 
     }
 
-    public function all()
+    public function all(): self
     {
         return $this;
     }
