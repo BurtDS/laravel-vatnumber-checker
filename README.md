@@ -31,7 +31,7 @@ Once that is done, you'll be able to use the provide functions.
 For this example we're using the VAT Number of Vulpo BV.
 
 ```php
-$validVatNumber = '0749617582' // Vulpo BV's VAT Number.
+$validVatNumber = '0749617582' // Vulpo BV's VAT number
 
 // returns a raw response of the European Commission's API
 VatChecker::getRawVatInstance('BE', $validVatNumber); 
@@ -39,10 +39,10 @@ VatChecker::getRawVatInstance('BE', $validVatNumber);
 // returns the validity of a VAT number
 VatChecker::isVatValid('BE', $validVatNumber); 
 
-// returns the company name related to the VAT number.
+// returns the company name related to the VAT number
 VatChecker::getCompanyName('BE', $validVatNumber); 
 
-// returns the company address related to the VAT number.
+// returns the company address related to the VAT number
 VatChecker::getCompanyAddress('BE', $validVatNumber); 
 ```
 
