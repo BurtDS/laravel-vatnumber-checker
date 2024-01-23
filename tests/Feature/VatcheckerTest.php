@@ -4,8 +4,8 @@ use Burtds\VatChecker\Exceptions\VatNumberNotFound;
 use Burtds\VatChecker\Facades\VatChecker;
 
 it('can get a valid VAT number', function () {
-    $vatinstance = VatChecker::getRawVatInstance('BE', '0749617582');
-    expect(json_decode($vatinstance)->valid)->toBeTrue();
+    $vatInstance = VatChecker::getRawVatInstance('BE', '0749617582');
+    expect(json_decode($vatInstance)->valid)->toBeTrue();
 });
 
 it('can get the company name from a valid vat number', function () {
