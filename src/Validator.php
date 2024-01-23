@@ -14,12 +14,11 @@ class Validator
     /**
      * Checking weither a Vat Checker API response is valid,
      * based on the $currencies array.
-     *
-     *
-     * @return bool
      */
-    public function ensureValidVatNumber($vatInstance, string $vatNumber)
+    public function ensureValidVatNumber($vatInstance, string $vatNumber): void
     {
-        return (json_decode($vatInstance)->valid) ? true : throw VatNumberNotFound::make($vatNumber);
+        if (! json_decode($vatInstance)->valid) {
+            throw VatNumberNotFound::make($vatNumber);
+        }
     }
 }
