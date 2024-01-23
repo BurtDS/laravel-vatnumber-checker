@@ -4,9 +4,8 @@ namespace Burtds\VatChecker;
 
 class VatInstance
 {
-    public function __construct(public $vatObject)
+    public function __construct(public array $vatProperties)
     {
-
     }
 
     public function all(): self
