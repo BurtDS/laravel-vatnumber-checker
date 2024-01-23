@@ -11,10 +11,8 @@ class Checker
 
     /**
      * Retrieves a known VAT Object for a given CountryCode & VatNumber.
-     *
-     * @return json
      */
-    public function getRawVatInstance(string $countryCode, string $vatNumber)
+    public function getRawVatInstance(string $countryCode, string $vatNumber): string
     {
         // Grab the VatObject returned by the API
         $vatObject = json_encode($this->api->retreiveVatInstance($countryCode, $vatNumber)->vatobject);
