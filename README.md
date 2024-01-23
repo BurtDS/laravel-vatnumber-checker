@@ -25,8 +25,8 @@ We'll need to import the Facade of this package on top of your file.
 ```php
 use Burtds\VatChecker\Facades\VatChecker
 ```
-Once that is done, you'll be able to use the conversion functions.
-**For this example we're using the VAT Number of Vulpo BV.
+Once that is done, you'll be able to use the providede functions.
+For this example we're using the VAT Number of Vulpo BV.
 ```php
 VatChecker::getRawVatInstance('BE','0749617582'); // returns a raw response of the European Commission's API.
 VatChecker::isVatValid('BE','0749617582'); // returns the validity of a VAT Number.
