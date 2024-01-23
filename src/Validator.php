@@ -18,7 +18,7 @@ class Validator
      *
      * @return bool
      */
-    public function isValidVatNumber($vatInstance, string $vatNumber)
+    public function ensureValidVatNumber($vatInstance, string $vatNumber)
     {
         return (json_decode($vatInstance)->valid) ? true : throw VatNumberNotFound::make($vatNumber);
     }

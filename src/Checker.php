@@ -19,7 +19,7 @@ class Checker
         $vatObject = json_encode($vatInstance->vatobject);
 
         // Check validity of the Object
-        $this->validator->isValidVatNumber($vatObject, $vatNumber);
+        $this->validator->ensureValidVatNumber($vatObject, $vatNumber);
 
         // Return the VatObject
         return $vatObject;
