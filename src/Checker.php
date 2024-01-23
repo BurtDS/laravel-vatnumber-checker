@@ -4,10 +4,10 @@ namespace Burtds\VatChecker;
 
 class Checker
 {
-    public function __construct(protected VatEuropeApi $api, protected Validator $validator)
-    {
-
-    }
+    public function __construct(
+        protected VatEuropeApi $api,
+        protected Validator $validator
+    ) {}
 
     /**
      * Retreives a known VAT Object for a given CountryCode & VatNumber.
