@@ -10,7 +10,7 @@ class Checker
     ) {}
 
     /**
-     * Retreives a known VAT Object for a given CountryCode & VatNumber.
+     * Retrieves a known VAT Object for a given CountryCode & VatNumber.
      *
      * @return json
      */
@@ -27,7 +27,7 @@ class Checker
     }
 
     /**
-     * Retreives the Company Name of a known VAT Object for a given CountryCode & VatNumber.
+     * Retrieves the Company Name of a known VAT Object for a given CountryCode & VatNumber.
      *
      * @return string
      */
@@ -41,7 +41,7 @@ class Checker
     }
 
     /**
-     * Retreives the Company address of a known VAT Object for a given CountryCode & VatNumber.
+     * Retrieves the Company address of a known VAT Object for a given CountryCode & VatNumber.
      *
      * @return string
      */
@@ -55,7 +55,7 @@ class Checker
     }
 
     /**
-     * Retreives the validity of a given CountryCode & VatNumber.
+     * Retrieves the validity of a given CountryCode & VatNumber.
      *
      * @return string
      */
