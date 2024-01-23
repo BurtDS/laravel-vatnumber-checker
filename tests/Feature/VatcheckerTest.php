@@ -32,7 +32,9 @@ it('can get a valid state for a valid vat number', function () {
 });
 
 it('fails with invalid vat number', function () {
-    $vatInstance = VatChecker::getRawVatInstance('BE', '617582');
+    $invalidVatNumber = '1234567890';
+
+    $vatInstance = VatChecker::getRawVatInstance('BE', $invalidVatNumber);
 
     // expect(json_decode($vatInstance)->valid)->toBeFalse();
 })->throws(VatNumberNotFound::class);
