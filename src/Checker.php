@@ -12,8 +12,14 @@ class Checker
     /**
      * Retrieves a known VAT Object for a given CountryCode & VatNumber.
      */
-    public function getRawVatInstance(string $countryCode, string $vatNumber): string
+    public function getRawVatInstance(string $countryCode, string $vatNumber = null): string
     {
+        // Support single parameter.
+        if(is_null($vatNumber)){
+            $originalValue = $countryCode;
+            $countryCode = substr($originalValue, 0, 2);
+            $vatNumber = substr($originalValue, 2, null);
+        }
         $vatInstance = $this->api->retrieveVatInstance($countryCode, $vatNumber);
 
         $vatObject = json_encode($vatInstance->vatProperties);
@@ -30,7 +36,7 @@ class Checker
      *
      * @return string
      */
-    public function getCompanyName(string $countryCode, string $vatNumber)
+    public function getCompanyName(string $countryCode, string $vatNumber = null)
     {
         // Fetch the VatObject
         $vatObject = $this->getRawVatInstance($countryCode, $vatNumber);
@@ -44,7 +50,7 @@ class Checker
      *
      * @return string
      */
-    public function getCompanyAddress(string $countryCode, string $vatNumber)
+    public function getCompanyAddress(string $countryCode, string $vatNumber = null)
     {
         // Fetch the VatObject
         $vatObject = $this->getRawVatInstance($countryCode, $vatNumber);
@@ -58,7 +64,7 @@ class Checker
      *
      * @return string
      */
-    public function isVatValid(string $countryCode, string $vatNumber)
+    public function isVatValid(string $countryCode, string $vatNumber = null)
     {
         // Fetch the VatObject
         $vatObject = $this->getRawVatInstance($countryCode, $vatNumber);

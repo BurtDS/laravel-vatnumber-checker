@@ -38,3 +38,8 @@ it('fails with invalid vat number', function () {
 
     // expect(json_decode($vatInstance)->valid)->toBeFalse();
 })->throws(VatNumberNotFound::class);
+
+it('can get a valid VAT number, from a single value', function () {
+    $vatInstance = VatChecker::getRawVatInstance('BE'.$this->validVatNumber);
+    expect(json_decode($vatInstance)->valid)->toBeTrue();
+});
