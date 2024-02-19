@@ -46,6 +46,36 @@ VatChecker::getCompanyName('BE', $validVatNumber);
 VatChecker::getCompanyAddress('BE', $validVatNumber); 
 ```
 
+There is also single parameter support for all methods.
+
+```php
+$validVatNumber = 'BE0749617582' // Vulpo BV's VAT number
+
+// returns a raw response of the European Commission's API
+VatChecker::getRawVatInstance($validVatNumber); 
+
+// returns the validity of a VAT number
+VatChecker::isVatValid($validVatNumber); 
+
+...
+
+```
+
+### Validation Rule
+
+This package also provides a simple validation rule.
+
+```php
+use Burtds\VatChecker\Rules\VatNumber;
+
+$validatedData = $request->validate([
+    'vat_number' => ['required', new VatNumber],
+]);
+```
+
+This example will pass the validation when the provided vat number is valid.
+If not, it will return a neat error message.
+
 ## Testing & Code Formatting
 
 For testing you can run:
