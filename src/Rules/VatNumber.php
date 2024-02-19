@@ -16,7 +16,12 @@ class VatNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        $vatInstance = VatChecker::getRawVatInstance($value);
+        try {
+            $vatInstance = VatChecker::getRawVatInstance($value);
+        } catch (\Throwable $th) {
+            return false;
+        }
+
         return json_decode($vatInstance)->valid;
     }
 
