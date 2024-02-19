@@ -2,12 +2,11 @@
 
 namespace Burtds\VatChecker;
 
-use Burtds\VatChecker\Exceptions\VatNumberNotFound;
 use Burtds\VatChecker\Exceptions\CountryCodeNotSupported;
+use Burtds\VatChecker\Exceptions\VatNumberNotFound;
 
 class Validator
 {
-
     public array $supportCountryCodes = [
         'AT',
         'BE',
@@ -58,5 +57,4 @@ class Validator
             throw VatNumberNotFound::make($vatNumber);
         }
     }
-
 }

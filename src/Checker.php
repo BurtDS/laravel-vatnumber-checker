@@ -7,7 +7,8 @@ class Checker
     public function __construct(
         protected VatEuropeApi $api,
         protected Validator $validator
-    ) {}
+    ) {
+    }
 
     /**
      * Retrieves a known VAT Object for a given CountryCode & VatNumber.
@@ -15,7 +16,7 @@ class Checker
     public function getRawVatInstance(string $countryCode, string $vatNumber = null): string
     {
         // Support single parameter.
-        if(is_null($vatNumber)){
+        if (is_null($vatNumber)) {
             $originalValue = $countryCode;
             $countryCode = substr($originalValue, 0, 2);
             $vatNumber = substr($originalValue, 2, null);
