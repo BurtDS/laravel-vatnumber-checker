@@ -1,5 +1,6 @@
 <?php
 
+use Burtds\VatChecker\Exceptions\CountryCodeNotSupported;
 use Burtds\VatChecker\Exceptions\VatNumberNotFound;
 use Burtds\VatChecker\Facades\VatChecker;
 
@@ -43,3 +44,7 @@ it('can get a valid VAT number, from a single value', function () {
     $vatInstance = VatChecker::getRawVatInstance('BE'.$this->validVatNumber);
     expect(json_decode($vatInstance)->valid)->toBeTrue();
 });
+
+it('fails with Country Code Not Supported Exception due to a not support Country Code', function () {
+    $vatInstance = VatChecker::getRawVatInstance('XX'.$this->validVatNumber);
+})->throws(CountryCodeNotSupported::class);

@@ -20,6 +20,10 @@ class Checker
             $countryCode = substr($originalValue, 0, 2);
             $vatNumber = substr($originalValue, 2, null);
         }
+
+        // Check country code
+        $this->validator->isExistingCountryCode($countryCode);
+
         $vatInstance = $this->api->retrieveVatInstance($countryCode, $vatNumber);
 
         $vatObject = json_encode($vatInstance->vatProperties);
