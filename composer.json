@@ -4,7 +4,11 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Burtds\\VatChecker\\": "src/",
+            "Burtds\\VatChecker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Tests\\": "tests/"
         }
     },
