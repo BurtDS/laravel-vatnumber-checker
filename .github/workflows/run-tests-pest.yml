@@ -1,6 +1,6 @@
 name: Tests
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   test:
@@ -8,20 +8,23 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        php: [8.1, 8.2, 8.3, 8.4]
-        laravel: [9, 10, 11, 12]
-        stability: [prefer-lowest, prefer-stable]
+        os: [ ubuntu-latest, windows-latest ]
+        php: [ 8.1, 8.2, 8.3, 8.4 ]
+        laravel: [ 9, 10, 11, 12 ]
+        stability: [ prefer-lowest, prefer-stable ]
         exclude:
+          - php: 8.2
+            laravel: 9
+          - php: 8.3
+            laravel: 9
+          - php: 8.4
+            laravel: 9
           - php: 8.1
             laravel: 11
           - php: 8.1
             laravel: 12
-          - php: 8.1
-            laravel: 12
-          
 
-    name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -31,8 +34,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          extensions: bcmath, curl, dom, exif, fileinfo, gd, iconv, imagick, intl, libxml, mbstring, pdo, pdo_sqlite, soap, sqlite, zip
           coverage: none
+          tools: composer:v2
 
       - name: Setup problem matchers
         run: |
@@ -40,7 +44,7 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install dependencies
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --with="illuminate/contract:^${{ matrix.laravel }}"
 
       - name: Execute tests
         run: vendor/bin/pest
