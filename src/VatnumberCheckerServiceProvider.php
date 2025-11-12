@@ -23,7 +23,7 @@ class VatnumberCheckerServiceProvider extends PackageServiceProvider
         });
 
         $this->app->bind(Validator::class, function () {
-            return new Validator();
+            return new Validator;
         });
 
         $this->app->bind(VatChecker::class, function () {
