@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class VatEuropeApi
 {
-    public function __construct(protected string $api)
-    {
-    }
+    public function __construct(protected string $api) {}
 
     public function retrieveVatInstance(string $countryCode, string $vatNumber): VatInstance
     {

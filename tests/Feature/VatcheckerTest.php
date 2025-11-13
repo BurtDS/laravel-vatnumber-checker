@@ -1,11 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
-use Burtds\VatChecker\Facades\VatChecker;
-use Burtds\VatChecker\Exceptions\VatNumberNotFound;
 use Burtds\VatChecker\Exceptions\CountryCodeNotSupported;
-
-
+use Burtds\VatChecker\Exceptions\VatNumberNotFound;
+use Burtds\VatChecker\Facades\VatChecker;
+use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     $this->validVatNumber = '0749617582'; // Vulpo's VAT Number
@@ -52,7 +50,7 @@ beforeEach(function () {
 
 it('can get a valid VAT number', function () {
     Http::fake([
-        'https://ec.europa.eu/*' => Http::response($this->validResponse)
+        'https://ec.europa.eu/*' => Http::response($this->validResponse),
     ]);
     $vatInstance = VatChecker::getRawVatInstance('BE', $this->validVatNumber);
     expect(json_decode($vatInstance)->valid)->toBeTrue();
@@ -60,7 +58,7 @@ it('can get a valid VAT number', function () {
 
 it('can get the company name from a valid vat number', function () {
     Http::fake([
-        'https://ec.europa.eu/*' => Http::response($this->validResponse)
+        'https://ec.europa.eu/*' => Http::response($this->validResponse),
     ]);
     $name = VatChecker::getCompanyName('BE', $this->validVatNumber);
     expect($name)->toBeString();
@@ -68,7 +66,7 @@ it('can get the company name from a valid vat number', function () {
 
 it('can get the company address from a valid vat number', function () {
     Http::fake([
-        'https://ec.europa.eu/*' => Http::response($this->validResponse)
+        'https://ec.europa.eu/*' => Http::response($this->validResponse),
     ]);
     $address = VatChecker::getCompanyAddress('BE', $this->validVatNumber);
     expect($address)->toBeString();
@@ -76,7 +74,7 @@ it('can get the company address from a valid vat number', function () {
 
 it('can get a valid state for a valid vat number', function () {
     Http::fake([
-        'https://ec.europa.eu/*' => Http::response($this->validResponse)
+        'https://ec.europa.eu/*' => Http::response($this->validResponse),
     ]);
     $isValid = VatChecker::isVatValid('BE', $this->validVatNumber);
     expect($isValid)->toBeTrue();
@@ -85,14 +83,14 @@ it('can get a valid state for a valid vat number', function () {
 it('fails with invalid vat number', function () {
     $invalidVatNumber = '1234567890';
     Http::fake([
-        'https://ec.europa.eu/*' => Http::response($this->invalidResponse)
+        'https://ec.europa.eu/*' => Http::response($this->invalidResponse),
     ]);
     $vatInstance = VatChecker::getRawVatInstance('BE', $invalidVatNumber);
 })->throws(VatNumberNotFound::class);
 
 it('can get a valid VAT number, from a single value', function () {
     Http::fake([
-        'https://ec.europa.eu/*' => Http::response($this->validResponse)
+        'https://ec.europa.eu/*' => Http::response($this->validResponse),
     ]);
     $vatInstance = VatChecker::getRawVatInstance('BE'.$this->validVatNumber);
     expect(json_decode($vatInstance)->valid)->toBeTrue();
