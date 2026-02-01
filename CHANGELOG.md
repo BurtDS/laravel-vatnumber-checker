@@ -2,6 +2,10 @@
 
 All notable changes to `burtds/laravel-vatnumber-checker` will be documented in this file
 
+## 1.0.8 - 2026-02-02
+
+- Added support for PHP 8.5
+
 ## 1.0.7 - 2025-11-13
 
 - Fix deprecated implicit nullable declarations
