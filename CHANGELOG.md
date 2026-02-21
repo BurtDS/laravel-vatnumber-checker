@@ -2,6 +2,10 @@
 
 All notable changes to `burtds/laravel-vatnumber-checker` will be documented in this file
 
+## 1.0.9 - 2026-02-21
+
+- Add Laravel 13 support
+  
 ## 1.0.8 - 2026-02-02
 
 - Added support for PHP 8.5
