@@ -3,35 +3,29 @@
 namespace Burtds\VatChecker\Rules;
 
 use Burtds\VatChecker\Facades\VatChecker;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class VatNumber implements Rule
+class VatNumber implements ValidationRule
 {
     /**
-     * Determine if the validation rule passes.
+     * Run the validation rule.
      *
      * @param  string  $attribute
      * @param  mixed  $value
-     * @return bool
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
         try {
             $vatInstance = VatChecker::getRawVatInstance($value);
+            $isValid = json_decode($vatInstance)->valid ?? false;
         } catch (\Throwable $th) {
-            return false;
+            $isValid = false;
         }
 
-        return json_decode($vatInstance)->valid;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'The :attribute is not valid.';
+        if (!$isValid) {
+            $fail('The :attribute is not valid.');
+        }
     }
 }
