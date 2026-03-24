@@ -2,6 +2,10 @@
 
 All notable changes to `burtds/laravel-vatnumber-checker` will be documented in this file
 
+## 1.0.11 - 2026-03-24
+
+- Updated orchestra
+
 ## 1.0.10 - 2026-02-23
 
 - Resolve deprecated Rule interface warning in Laravel 12 
